@@ -3,10 +3,14 @@
 
 <mapper namespace="com.bin.dao.DeviceDao">
 
-    <!--
-        <select id="findPermListInfo" resultType="com.bin.project.pojo.SysPermission">
-              SELECT * FROM sys_permission;
-          </select>-->
+        <select id="getDeviceByGroupId" resultType="com.bin.pojo.Device">
+            SELECT
+                d.*
+            FROM group_device gd
+            LEFT JOIN device d
+            ON d.id=gd.deviceId
+            WHERE gd.groupId=#{id}
+        </select>
 
 
 </mapper>

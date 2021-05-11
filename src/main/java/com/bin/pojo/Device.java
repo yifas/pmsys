@@ -110,5 +110,10 @@ public class Device implements Serializable {
      */
     private Date updateTime;
 
+    /**
+     * 上次在线时间
+     */
+    private Integer lastOnlineTime;
+
     public Device() {}
 }

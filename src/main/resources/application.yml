@@ -6,13 +6,14 @@ spring:
   datasource:
     username: root
     password: root
-    url: jdbc:mysql://localhost:3306/pm?useSSL=false&useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2B8
+    url: jdbc:mysql://121.196.175.191:3306/pm?useSSL=false&useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2B8
     driver-class-name: com.mysql.cj.jdbc.Driver
 
 mybatis-plus:
   configuration:
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-    # \u662F\u5426\u5F00\u542F\u81EA\u52A8\u9A7C\u5CF0\u547D\u540D\u89C4\u5219\uFF08camel case\uFF09\u6620\u5C04\uFF0C\u5373\u4ECE\u7ECF\u5178\u6570\u636E\u5E93\u5217\u540D A_COLUMN\uFF08\u4E0B\u5212\u7EBF\u547D\u540D\uFF09 \u5230\u7ECF\u5178 Java \u5C5E\u6027\u540D aColumn\uFF08\u9A7C\u5CF0\u547D\u540D\uFF09 \u7684\u7C7B\u4F3C\u6620\u5C04
+    #log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    # 是否开启自动驼峰命名规则（camel case）映射，即从经典数据库列名 A_COLUMN（下划线命名）
+    # 到经典 Java 属性名 aColumn（驼峰命名） 的类似映射
     map-underscore-to-camel-case: false
   #global-config:
     #db-config:

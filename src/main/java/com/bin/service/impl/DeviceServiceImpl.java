@@ -7,8 +7,9 @@ import com.bin.pojo.Device;
 import com.bin.service.DeviceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.Date;
+import java.util.List;
+
 @Service
 public class DeviceServiceImpl implements DeviceService {
 
@@ -31,13 +32,43 @@ public class DeviceServiceImpl implements DeviceService {
         //如果串号不存在
         if (one==null){
             device.setCreateTime(new Date());
+            //刚刚创建 并且没有再次访问该接口 显示为0分钟
+            device.setLastOnlineTime(0);
+            //第一次创建的时候统一设置为0  【如果长时间没有第二次访问设置为1 就不合理】
+            device.setOnline(0);
             return deviceDao.insert(device);
         }
         //如果串号存在  就更新这条数据
         UpdateWrapper<Device> updateWrapper = new UpdateWrapper<>();
         updateWrapper.eq("serial",device.getSerial());
-        device.setUpdateTime(new Date());
+
+        //获取数据库中updateTime
+        if (one.getUpdateTime()!=null){
+            //时间做差 转换分钟
+            Date updateTime = one.getUpdateTime();
+            //数据库更新时间 时间戳
+            long updateTimes = updateTime.getTime();
+            //转成分钟
+            long minute = System.currentTimeMillis()/1000/60-updateTimes/1000/60;
+            device.setLastOnlineTime((int) minute);
+            //判断是否在线逻辑 约定30分钟之内访问该接口为在线
+            if (minute<30){
+                device.setOnline(1);
+            }else {
+                device.setOnline(0);
+            }
+        }else {
+            device.setUpdateTime(new Date());
+            //如果是第一次update 显示为0分钟
+            device.setLastOnlineTime(0);
+        }
         return deviceDao.update(device,updateWrapper);
 
+    }
+
+    @Override
+    public List<Device> getDeviceByGroupId(Long id) {
+
+        return deviceDao.getDeviceByGroupId(id);
     }
 }

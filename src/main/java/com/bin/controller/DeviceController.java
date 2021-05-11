@@ -96,4 +96,12 @@ public class DeviceController {
         return new Result(200, "删除成功", deviceDao.deleteById(id));
     }
 
+    @GetMapping("/getDeviceByGroupId/{id}")
+    public Result getDeviceByGroupId(@PathVariable Long id) {
+
+        List<Device> devices = deviceService.getDeviceByGroupId(id);
+
+        return new Result(200,"查询成功",devices);
+    }
+
 }
