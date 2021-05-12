@@ -58,4 +58,15 @@ class PmApplicationTests {
 
     }
 
+    @Test
+    void testUpdate(){
+        //测试未传值的是否更新
+        Group group = new Group();
+        group.setId(6);
+        group.setName("bb");
+        group.setAmount(10);
+        groupDao.updateById(group);
+
+    }
+
 }

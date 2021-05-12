@@ -38,6 +38,7 @@ public class GroupController {
         Page<Group> page = new Page<>(param.getCurrentPage(), param.getPageSize());
 
         IPage<Group> list = groupDao.selectPage(page,null);
+
         return new Result(200, "请求成功", list);
     }
 
