@@ -1,14 +1,17 @@
 package com.bin.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.bin.common.Result;
 import com.bin.dao.DeviceDao;
+import com.bin.dao.InfoDao;
 import com.bin.dto.PageQueryBean;
 import com.bin.dto.QueryCondition;
 import com.bin.pojo.Device;
 import com.bin.service.DeviceService;
-import org.springframework.beans.BeanUtils;
+import com.bin.service.InfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,6 +30,9 @@ public class DeviceController {
     @Autowired
     private DeviceDao deviceDao;
 
+    @Autowired
+    private InfoService infoService;
+
     /**
      * 获取请求数据
      *
@@ -36,17 +42,27 @@ public class DeviceController {
     @PostMapping("/addDevice")
     public Result addDevice(@RequestBody Device device) {
         int i = deviceService.addDevice(device);
-        if (i < 1) {
-            return new Result(300, "请求失败");
+        if (i>0){
+            return new Result(200, "请求成功");
         }
-        return new Result(200, "请求成功");
+        return new Result(401, "请求失败");
     }
 
     @PostMapping("/getDevice")
     public Result getDevice(@RequestBody PageQueryBean param) {
+        //分页查询前对updateTime进行判断 并对>60s设置为离线 在Info表添加离线记录
+        List<Device> devices = deviceService.selectIds();
+        int i = deviceService.updateByCurrentTime();
+        if (i>0){
+            //更新成功 在Info表添加离线记录
+
+            infoService.insertInfo(devices);
+        }
+
+        //分页查询
         Page<Device> page = new Page<>(param.getCurrentPage(), param.getPageSize());
         IPage<Device> list = deviceDao.selectPage(page, null);
-        System.out.println(list);
+        //System.out.println(list);
         //List<Device> devices = deviceDao.selectList(null);
         return new Result(200, "请求成功", list);
     }

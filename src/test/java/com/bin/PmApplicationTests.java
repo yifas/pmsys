@@ -3,8 +3,10 @@ package com.bin;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.bin.dao.DeviceDao;
 import com.bin.dao.GroupDao;
+import com.bin.dao.InfoDao;
 import com.bin.pojo.Device;
 import com.bin.pojo.Group;
+import com.bin.pojo.Info;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -21,6 +23,8 @@ class PmApplicationTests {
     @Autowired
     private GroupDao groupDao;
 
+    @Autowired
+    private InfoDao infoDao;
 
     @Test
     void contextLoads() {
@@ -67,6 +71,19 @@ class PmApplicationTests {
         group.setAmount(10);
         groupDao.updateById(group);
 
+    }
+
+    @Test
+    void testSelectOne(){
+        QueryWrapper<Info> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("status", 0);
+        queryWrapper.eq("serial", "ccccca445a59524853");
+        //按时间降序
+        queryWrapper.orderByDesc("createTime");
+        queryWrapper.last("limit0,1");
+        //最近下线记录    ----------可能存在多条
+        Info info = infoDao.selectOne(queryWrapper);
+        System.err.println(info);
     }
 
 }

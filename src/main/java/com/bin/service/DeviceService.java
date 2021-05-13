@@ -18,4 +18,17 @@ public interface DeviceService {
      * @return
      */
     List<Device> getDeviceByGroupId(Long id);
+
+    /**
+     * 判断时间差 更新状态
+     * @return
+     */
+    int updateByCurrentTime();
+
+    /**
+     * 获取时间差>60 的ID
+     * @return
+     */
+    List<Device> selectIds();
+
 }

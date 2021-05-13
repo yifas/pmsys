@@ -3,7 +3,7 @@
 
 <mapper namespace="com.bin.dao.DeviceDao">
 
-        <select id="getDeviceByGroupId" resultType="com.bin.pojo.Device">
+    <select id="getDeviceByGroupId" resultType="com.bin.pojo.Device">
             SELECT
                 d.*
             FROM group_device gd
@@ -12,5 +12,22 @@
             WHERE gd.groupId=#{id}
         </select>
 
+    <!--
+        #更新语句
+        UPDATE device set `online`=1 WHERE id in(3)
+        #需要更新的数据子查询
+        (select id from(SELECT id from device where TIMESTAMPDIFF(SECOND,updateTime,now())>60) as tb_temp)
+        #整体
 
+        UPDATE device set `online`=0 WHERE id in(select id from(SELECT id from device where TIMESTAMPDIFF(SECOND,updateTime,now())>60) as tb_temp)
+    -->
+    <update id="updateByCurrentTime">
+        UPDATE device
+        set `online`=0
+        WHERE id in(select id from(SELECT id from device where TIMESTAMPDIFF(SECOND,updateTime,now())>60) as tb_temp)
+    </update>
+
+    <select id="selectIds" resultType="com.bin.pojo.Device">
+        SELECT * from device where TIMESTAMPDIFF(SECOND,updateTime,now())>60
+    </select>
 </mapper>

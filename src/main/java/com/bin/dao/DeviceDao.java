@@ -9,4 +9,8 @@ import java.util.List;
 public interface DeviceDao extends BaseMapper<Device> {
 
     List<Device> getDeviceByGroupId(@Param("id") Long id);
+
+    void updateByCurrentTime();
+
+    List<Device> selectIds();
 }

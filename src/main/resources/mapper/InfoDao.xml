@@ -3,10 +3,43 @@
 
 <mapper namespace="com.bin.dao.InfoDao">
 
-    <!--
-        <select id="findPermListInfo" resultType="com.bin.project.pojo.SysPermission">
-              SELECT * FROM sys_permission;
-          </select>-->
+        <select id="selectBySerial" resultType="com.bin.pojo.Info">
+            SELECT
+                *
+            from info
+            WHERE serial=#{serial} and status=0
+            ORDER BY createTime DESC
+            LIMIT 1
+         </select>
+    <select id="selectStatusBySerial" resultType="java.lang.Integer">
+         SELECT
+                status
+            from info
+            WHERE serial=#{serial}
+            ORDER BY createTime DESC
+            LIMIT 1
+    </select>
+    <select id="selectByMapCond" resultType="com.bin.pojo.Info">
+        select
+        *
+        from info
+        <where>
+            <if test="serial != null">
+                AND serial = #{serial}
+            </if>
+            <if test="status != null">
+                AND status = #{status}
+            </if>
+            <if test="createTime != null">
+                AND createTime like concat(#{createTime},"%")
+            </if>
+            <if test="remark != null">
+                AND remark = #{remark}
+            </if>
+        </where>
+
+
+    </select>
 
 
 </mapper>

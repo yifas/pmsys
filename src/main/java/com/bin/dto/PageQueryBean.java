@@ -13,3 +13,5 @@ public class PageQueryBean implements Serializable {
     private Integer pageSize;//每页记录数
 
 }
+
+

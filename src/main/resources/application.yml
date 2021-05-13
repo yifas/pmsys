@@ -6,7 +6,8 @@ spring:
   datasource:
     username: root
     password: root
-    url: jdbc:mysql://121.196.175.191:3306/pm?useSSL=false&useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2B8
+    #url: jdbc:mysql://121.196.175.191:3306/pm?useSSL=false&useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2B8
+    url: jdbc:mysql://121.196.175.191:3306/pm?useSSL=false&useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
     driver-class-name: com.mysql.cj.jdbc.Driver
 
 mybatis-plus:
