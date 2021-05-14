@@ -4,7 +4,9 @@ import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.bin.common.Result;
 import com.bin.util.HttpContextUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,7 +20,14 @@ public class LoginInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        if (request.getMethod().equals("OPTIONS")){
+            return true;
+        }
 
+      /*  System.out.println(request.getRequestURI());
+        if (request.getRequestURI().contains("/login") || request.getRequestURI().contains("/addDevice")){
+            return true;
+        }*/
         //从header中获取token
         String token = request.getHeader("token");
         //如果token为空
@@ -33,6 +42,10 @@ public class LoginInterceptor implements HandlerInterceptor {
         return true;
     }
 
+    @Override
+    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
+
+    }
 
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
