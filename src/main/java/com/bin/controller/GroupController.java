@@ -1,6 +1,5 @@
 package com.bin.controller;
 
-import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -8,9 +7,7 @@ import com.bin.common.Result;
 import com.bin.dao.GroupDao;
 import com.bin.dao.GroupDeviceDao;
 import com.bin.dto.PageQueryBean;
-import com.bin.dto.QueryCondition;
 import com.bin.dto.QueryGroupCondition;
-import com.bin.pojo.Device;
 import com.bin.pojo.Group;
 import com.bin.pojo.GroupDevice;
 import com.bin.service.GroupService;
