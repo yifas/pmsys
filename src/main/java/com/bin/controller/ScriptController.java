@@ -7,22 +7,23 @@ import com.bin.common.Result;
 import com.bin.dao.GroupScriptDao;
 import com.bin.dao.ScriptDao;
 import com.bin.dto.PageQueryBean;
-import com.bin.dto.QueryGroupCondition;
 import com.bin.dto.QueryScriptCondition;
 import com.bin.dto.QueryScriptDto;
-import com.bin.pojo.Group;
-import com.bin.pojo.GroupDevice;
 import com.bin.pojo.GroupScript;
 import com.bin.pojo.Script;
 import com.bin.service.GroupScriptService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 
 @RestController
 @RequestMapping("/device/script")
@@ -33,20 +34,26 @@ public class ScriptController {
     private ScriptDao scriptDao;
 
 
+
     @Autowired
     private GroupScriptDao groupScriptDao;
 
     @Autowired
     private GroupScriptService scriptService;
 
+
+
     @PostMapping("/getScript")
     public Result getScript(@RequestBody PageQueryBean param) {
         Page<Script> page = new Page<>(param.getCurrentPage(), param.getPageSize());
 
+
         IPage<Script> list = scriptDao.selectPage(page, null);
+
 
         return new Result(200, "请求成功", list);
     }
+
 
 
     @PostMapping("/addScript")
