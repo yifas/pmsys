@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bin.dao.TaskDao">
+
+    <select id="selectByMapCond" resultType="com.bin.pojo.Task">
+        select
+        *
+        from task
+        <where>
+            <if test="scriptName != null">
+                AND scriptName = #{scriptName}
+            </if>
+            <if test="serial != null">
+                AND serial = #{serial}
+            </if>
+            <if test="status != null">
+                AND status = #{status}
+            </if>
+            <if test="createTime != null">
+                AND createTime like concat(#{createTime},"%")
+            </if>
+            <if test="remark != null">
+                AND remark = #{remark}
+            </if>
+        </where>
+
+
+    </select>
+
+
+</mapper>

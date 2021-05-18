@@ -1,6 +1,7 @@
 package com.bin.pojo;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import java.io.Serializable;
 import java.util.Date;
@@ -28,7 +29,7 @@ public class Task implements Serializable {
     /**
      * 设备分组 展示
      */
-    private Integer groupId;
+    private String groupName;
 
     /**
      * 执行时间
@@ -56,18 +57,21 @@ public class Task implements Serializable {
     private String remark;
 
     /**
-     * 创建时间
+     * 开始时间
      */
+    @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
     private Date createTime;
 
     /**
      * 修改时间 可能用于获取状态
      */
+    @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
     private Date updateTime;
 
     /**
      * 结束时间
      */
+    @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
     private Date endTime;
 
     public Task() {}

@@ -1,5 +1,6 @@
 package com.bin.service;
 
+import com.bin.common.Result;
 import com.bin.pojo.Device;
 
 import java.util.List;
@@ -10,7 +11,7 @@ public interface DeviceService {
      * @param device
      * @return
      */
-    int addDevice(Device device);
+    Result addDevice(Device device);
 
     /**
      * 通过分组查询设备

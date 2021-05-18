@@ -57,14 +57,14 @@ public class ScriptController {
 
 
     @PostMapping("/addScript")
-    public Result addScript(@RequestBody QueryScriptDto script) {
+    public Result addScript(@RequestBody Script script) {
 
         //System.out.println(script.getCheckList());
         //1.存储到script表
-        script.setCreateTime(new Date());
+        //script.setCreateTime(new Date());
         scriptDao.insert(script);
         //2.存储到关系表
-        if (script.getCheckList()!=null){
+       /* if (script.getCheckList()!=null){
             for (Integer i : script.getCheckList()) {
                 GroupScript groupScript = new GroupScript();
                 groupScript.setScriptId(script.getId());
@@ -72,7 +72,7 @@ public class ScriptController {
                 groupScriptDao.insert(groupScript);
             }
         }
-
+*/
         return new Result(200, "新增成功");
     }
 
@@ -91,11 +91,11 @@ public class ScriptController {
 
 
     @PutMapping("/updateScriptById/{id}")
-    public Result updateScriptById(@PathVariable Integer id, @RequestBody QueryScriptDto script) {
+    public Result updateScriptById(@PathVariable Integer id, @RequestBody Script script) {
         script.setId(id);
         scriptDao.updateById(script);
         //重新建立关系
-        scriptService.updateRelation(id,script.getCheckList());
+        //scriptService.updateRelation(id,script.getCheckList());
         return new Result(200, "修改成功");
     }
 

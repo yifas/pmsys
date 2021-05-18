@@ -7,6 +7,7 @@ import com.bin.dao.InfoDao;
 import com.bin.pojo.Device;
 import com.bin.pojo.Group;
 import com.bin.pojo.Info;
+import com.bin.pojo.Task;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -84,6 +85,12 @@ class PmApplicationTests {
         //最近下线记录    ----------可能存在多条
         Info info = infoDao.selectOne(queryWrapper);
         System.err.println(info);
+    }
+
+    @Test
+    void testSelectTaskBySerial(){
+        Task task = deviceDao.selectTaskBySerial("22221a445a59524853");
+        System.out.println(task);
     }
 
 }

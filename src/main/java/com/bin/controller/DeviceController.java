@@ -1,7 +1,5 @@
 package com.bin.controller;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.bin.common.Result;
@@ -40,11 +38,8 @@ public class DeviceController {
      */
     @PostMapping("/addDevice")
     public Result addDevice(@RequestBody Device device) {
-        int i = deviceService.addDevice(device);
-        if (i>0){
-            return new Result(200, "请求成功");
-        }
-        return new Result(401, "请求失败");
+
+        return deviceService.addDevice(device);
     }
 
     @PostMapping("/getDevice")

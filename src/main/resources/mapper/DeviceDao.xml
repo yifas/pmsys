@@ -30,4 +30,19 @@
     <select id="selectIds" resultType="com.bin.pojo.Device">
         SELECT * from device where TIMESTAMPDIFF(SECOND,updateTime,now())>60
     </select>
+
+
+    <select id="selectTaskBySerial" resultType="com.bin.pojo.Task">
+        SELECT
+        t.*
+        FROM device d
+        inner JOIN group_device gd
+        on d.id=gd.deviceId
+        inner join group_task gt
+        on gt.groupId=gd.groupId
+        inner join task t
+        on t.id = gt.taskId
+        where d.serial=#{serial}
+        having t.createTime <![CDATA[<]]> now() AND NOW() <![CDATA[<]]> t.endTime
+    </select>
 </mapper>

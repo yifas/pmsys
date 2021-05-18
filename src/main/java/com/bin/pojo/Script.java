@@ -2,6 +2,7 @@ package com.bin.pojo;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -34,6 +35,16 @@ public class Script implements Serializable {
     private Integer groupId;
 
     /**
+     * 执行时长
+     */
+    private Integer duration;
+
+    /**
+     * 内容
+     */
+    private String content;
+
+    /**
      * 脚本地址
      */
     private String address;
@@ -51,12 +62,20 @@ public class Script implements Serializable {
     /**
      * 创建时间
      */
+    @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
     private Date createTime;
 
     /**
      * 修改时间
      */
+    @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
     private Date updateTime;
+
+    /**
+     * 结束时间
+     */
+    @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
+    private Date endTime;
 
     public Script() {}
 }
