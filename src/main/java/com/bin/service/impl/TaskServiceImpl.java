@@ -1,6 +1,7 @@
 package com.bin.service.impl;
 
 import com.bin.dao.TaskDao;
+import com.bin.dto.TimeQuantumDto;
 import com.bin.pojo.Task;
 import com.bin.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,5 +20,10 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public List<Task> selectByMapCond(Map<String, Object> map) {
         return taskDao.selectByMapCond(map);
+    }
+
+    @Override
+    public List<TimeQuantumDto> getTimeByCodi(String name) {
+        return taskDao.getTimeByCodi(name);
     }
 }

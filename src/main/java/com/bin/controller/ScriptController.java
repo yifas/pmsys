@@ -15,7 +15,6 @@ import com.bin.service.GroupScriptService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -46,11 +45,7 @@ public class ScriptController {
     @PostMapping("/getScript")
     public Result getScript(@RequestBody PageQueryBean param) {
         Page<Script> page = new Page<>(param.getCurrentPage(), param.getPageSize());
-
-
         IPage<Script> list = scriptDao.selectPage(page, null);
-
-
         return new Result(200, "请求成功", list);
     }
 

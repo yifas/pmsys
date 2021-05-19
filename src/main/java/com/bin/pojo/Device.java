@@ -96,6 +96,11 @@ public class Device implements Serializable {
     private Integer online;
 
     /**
+     * 脚本名字
+     */
+    private String jsName;
+
+    /**
      * 备注
      */
     private String remark;

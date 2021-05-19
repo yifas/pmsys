@@ -8,7 +8,7 @@ import java.io.Serializable;
 public class QueryTaskCondition implements Serializable {
 
     private String scriptName;
-    private String serial;
+    private String groupName;
     private String createTime;
     private String remark;
     private Integer status;

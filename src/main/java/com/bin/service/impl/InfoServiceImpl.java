@@ -36,7 +36,9 @@ public class InfoServiceImpl implements InfoService {
             //status==1
             Info info = new Info();
             info.setSerial(device.getSerial());
-            info.setCreateTime(new Date());
+            //此处离线时间应改为设备最新的updateTime
+            //info.setCreateTime(new Date());
+            info.setCreateTime(device.getUpdateTime());
             info.setStatus(0);
             infoDao.insert(info);
 

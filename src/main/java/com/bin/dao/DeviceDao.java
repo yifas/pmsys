@@ -2,7 +2,6 @@ package com.bin.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.bin.pojo.Device;
-import com.bin.pojo.Script;
 import com.bin.pojo.Task;
 import org.apache.ibatis.annotations.Param;
 

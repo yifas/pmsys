@@ -4,10 +4,12 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.bin.dao.DeviceDao;
 import com.bin.dao.GroupDao;
 import com.bin.dao.InfoDao;
+import com.bin.dto.TimeQuantumDto;
 import com.bin.pojo.Device;
 import com.bin.pojo.Group;
 import com.bin.pojo.Info;
 import com.bin.pojo.Task;
+import com.bin.service.TaskService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -26,6 +28,10 @@ class PmApplicationTests {
 
     @Autowired
     private InfoDao infoDao;
+
+    @Autowired
+    private TaskService taskService;
+
 
     @Test
     void contextLoads() {
@@ -93,4 +99,16 @@ class PmApplicationTests {
         System.out.println(task);
     }
 
+    @Test
+    void testGetTimeByCodi(){
+        List<TimeQuantumDto> list = taskService.getTimeByCodi("头条");
+        System.out.println(list);
+    }
+
+    @Test
+    void testPlusTime(){
+        Date date = new Date();
+        System.out.println(date);
+        System.out.println(date.getTime()+600000);
+    }
 }

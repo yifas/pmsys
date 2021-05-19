@@ -86,13 +86,25 @@ public class TaskController {
         BeanUtils.copyProperties(taskDto, task);
         task.setScriptName(script.getName());
         //task.setCreateTime(new Date());
+        Group group =null;
         //根据groupid查询group name  存储到task
         for (Integer i : taskDto.getCheckList()) {
-            Group group = groupDao.selectById(i);
+             group = groupDao.selectById(i);
             task.setGroupName(group.getName());
         }
         //需要判断当前group 对应的task 中时间段
-        
+        List<TimeQuantumDto> list = taskService.getTimeByCodi(group.getName());
+        //遍历集合比较时间段
+        for (TimeQuantumDto qt : list) {
+            //数据库开始时间小于设置时间  数据库结束时间大于设置 +10 设置时间 < 数据库查询时间
+            /*
+                1.数据库时间的时间差
+                2.设置的开始时间点  在数据库的那个时间段
+             */
+            if (qt.getCreateTime().getTime() <= taskDto.getCreateTime().getTime()&& taskDto.getCreateTime().getTime()<=qt.getEndTime().getTime()){
+                throw new IllegalArgumentException("当前设置时间段内，已有执行任务");
+            }
+        }
 
         taskDao.insert(task);
 
@@ -152,6 +164,11 @@ public class TaskController {
         for (Integer i : taskDto.getCheckList()) {
             Group group = groupDao.selectById(i);
             task.setGroupName(group.getName());
+        }
+        //脚本ID转换name,前端value是id
+        Script script = scriptDao.selectById(taskDto.getScriptName());
+        if (script!=null){
+            task.setScriptName(script.getName());
         }
 
         taskDao.updateById(task);
@@ -218,9 +235,9 @@ public class TaskController {
 
             map.put("createTime", condition.getCreateTime());
         }
-        if ((!"".equals(condition.getSerial())) && condition.getSerial()!=null) {
+        if ((!"".equals(condition.getGroupName())) && condition.getGroupName()!=null) {
 
-            map.put("serial", condition.getSerial());
+            map.put("groupName", condition.getGroupName());
         }
         if ((!"".equals(condition.getRemark())) && condition.getRemark()!=null) {
 

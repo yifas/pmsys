@@ -2,7 +2,6 @@ package com.bin.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
-import com.baomidou.mybatisplus.extension.api.R;
 import com.bin.common.Result;
 import com.bin.dao.DeviceDao;
 import com.bin.dao.InfoDao;
@@ -12,14 +11,17 @@ import com.bin.pojo.Info;
 import com.bin.pojo.Script;
 import com.bin.pojo.Task;
 import com.bin.service.DeviceService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
 @Service
+@Slf4j
 public class DeviceServiceImpl implements DeviceService {
 
     @Autowired
@@ -45,12 +47,13 @@ public class DeviceServiceImpl implements DeviceService {
             device.setLastOnlineTime(0);
             //第一次创建的时候统一设置为0  【如果长时间没有第二次访问设置为1 就不合理】
             device.setOnline(0);
+            log.info("设备串号: {},新增时间: {}",device.getSerial(),new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
             return new Result(200,"新增设备成功",deviceDao.insert(device));
         }
         //获取数据库中updateTime 【是否必要】
-        if (one.getUpdateTime() == null) {
+        /*if (one.getUpdateTime() == null) {
             return new Result(401,"新增设备失败");
-        }
+        }*/
         //如果串号 更新时间 存在  就更新这条数据
         UpdateWrapper<Device> updateWrapper = new UpdateWrapper<>();
         updateWrapper.eq("serial", device.getSerial());
@@ -82,7 +85,7 @@ public class DeviceServiceImpl implements DeviceService {
             //先查到其对应的task
             if (task!=null){
                 //脚本名称
-                task.getScriptName();
+                //task.getScriptName();
                 //查询脚本信息
                 QueryWrapper<Script> queryWrapper = new QueryWrapper<>();
                 queryWrapper.eq("name",task.getScriptName());
@@ -96,13 +99,18 @@ public class DeviceServiceImpl implements DeviceService {
                 if (script.getAddress()!=null&&!"".equals(script.getAddress())){
                     map.put("address",script.getAddress());
                 }
+                //计划任务ID
+                if (task.getId()!=null){
+                    map.put("taskId",task.getId());
+                }
+
             }
 
             return new Result(200,"更新设备&查询当前任务成功",map);
         }
         // >60s的情况
         //判断当前设备是否有最近的下线记录 (IMEI status=0 where createTime最近)
-        //最近下线记录    ----------可能存在多条
+        //最近下线记录    ----------可能存在多条,已经改成最近的一条
         Info info = infoDao.selectBySerial(device.getSerial());
         //有下线记录
         if (info != null) {

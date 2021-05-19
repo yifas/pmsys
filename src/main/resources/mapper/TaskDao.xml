@@ -11,8 +11,8 @@
             <if test="scriptName != null">
                 AND scriptName = #{scriptName}
             </if>
-            <if test="serial != null">
-                AND serial = #{serial}
+            <if test="groupName != null">
+                AND groupName = #{groupName}
             </if>
             <if test="status != null">
                 AND status = #{status}
@@ -26,6 +26,9 @@
         </where>
 
 
+    </select>
+    <select id="getTimeByCodi" resultType="com.bin.dto.TimeQuantumDto">
+        SELECT createTime,endTime from task WHERE groupName=#{name} ORDER BY createTime asc
     </select>
 
 

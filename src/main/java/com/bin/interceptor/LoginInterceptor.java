@@ -20,6 +20,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        //第一次请求是OPTIONS 必须放行
         if (request.getMethod().equals("OPTIONS")){
             return true;
         }

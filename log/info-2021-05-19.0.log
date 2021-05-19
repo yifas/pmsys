@@ -1,0 +1,121 @@
+2021-05-19 13:23:06 INFO  [org.springframework.boot.StartupInfoLogger        ] : Starting PmApplication using Java 1.8.0_91 on DESKTOP-R71C5UD with PID 5708 (D:\work\pm\target\classes started by fitz in D:\work\pm)
+2021-05-19 13:23:06 INFO  [org.springframework.boot.SpringApplication        ] : No active profile set, falling back to default profiles: default
+2021-05-19 13:23:07 WARN  [org.mybatis.logging.Logger                        ] : Skipping MapperFactoryBean with name 'deviceDao' and 'com.bin.dao.DeviceDao' mapperInterface. Bean already defined with the same name!
+2021-05-19 13:23:07 WARN  [org.mybatis.logging.Logger                        ] : Skipping MapperFactoryBean with name 'groupDao' and 'com.bin.dao.GroupDao' mapperInterface. Bean already defined with the same name!
+2021-05-19 13:23:07 WARN  [org.mybatis.logging.Logger                        ] : Skipping MapperFactoryBean with name 'groupDeviceDao' and 'com.bin.dao.GroupDeviceDao' mapperInterface. Bean already defined with the same name!
+2021-05-19 13:23:07 WARN  [org.mybatis.logging.Logger                        ] : Skipping MapperFactoryBean with name 'groupScriptDao' and 'com.bin.dao.GroupScriptDao' mapperInterface. Bean already defined with the same name!
+2021-05-19 13:23:07 WARN  [org.mybatis.logging.Logger                        ] : Skipping MapperFactoryBean with name 'groupTaskDao' and 'com.bin.dao.GroupTaskDao' mapperInterface. Bean already defined with the same name!
+2021-05-19 13:23:07 WARN  [org.mybatis.logging.Logger                        ] : Skipping MapperFactoryBean with name 'infoDao' and 'com.bin.dao.InfoDao' mapperInterface. Bean already defined with the same name!
+2021-05-19 13:23:07 WARN  [org.mybatis.logging.Logger                        ] : Skipping MapperFactoryBean with name 'scriptDao' and 'com.bin.dao.ScriptDao' mapperInterface. Bean already defined with the same name!
+2021-05-19 13:23:07 WARN  [org.mybatis.logging.Logger                        ] : Skipping MapperFactoryBean with name 'taskDao' and 'com.bin.dao.TaskDao' mapperInterface. Bean already defined with the same name!
+2021-05-19 13:23:07 WARN  [org.mybatis.logging.Logger                        ] : Skipping MapperFactoryBean with name 'userDao' and 'com.bin.dao.UserDao' mapperInterface. Bean already defined with the same name!
+2021-05-19 13:23:07 WARN  [org.mybatis.logging.Logger                        ] : No MyBatis mapper was found in '[com.bin.dao]' package. Please check your configuration.
+2021-05-19 13:23:07 INFO  [framework.boot.web.embedded.tomcat.TomcatWebServer] : Tomcat initialized with port(s): 8090 (http)
+2021-05-19 13:23:07 INFO  [org.apache.juli.logging.DirectJDKLog              ] : Initializing ProtocolHandler ["http-nio-8090"]
+2021-05-19 13:23:07 INFO  [org.apache.juli.logging.DirectJDKLog              ] : Starting service [Tomcat]
+2021-05-19 13:23:07 INFO  [org.apache.juli.logging.DirectJDKLog              ] : Starting Servlet engine: [Apache Tomcat/9.0.45]
+2021-05-19 13:23:07 INFO  [org.apache.juli.logging.DirectJDKLog              ] : Initializing Spring embedded WebApplicationContext
+2021-05-19 13:23:07 INFO  [servlet.context.ServletWebServerApplicationContext] : Root WebApplicationContext: initialization completed in 951 ms
+2021-05-19 13:23:08 INFO  [scheduling.concurrent.ExecutorConfigurationSupport] : Initializing ExecutorService 'applicationTaskExecutor'
+2021-05-19 13:23:08 INFO  [org.apache.juli.logging.DirectJDKLog              ] : Starting ProtocolHandler ["http-nio-8090"]
+2021-05-19 13:23:08 INFO  [framework.boot.web.embedded.tomcat.TomcatWebServer] : Tomcat started on port(s): 8090 (http) with context path ''
+2021-05-19 13:23:08 INFO  [org.springframework.boot.StartupInfoLogger        ] : Started PmApplication in 2.455 seconds (JVM running for 3.236)
+2021-05-19 13:23:42 INFO  [org.apache.juli.logging.DirectJDKLog              ] : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-05-19 13:23:42 INFO  [org.springframework.web.servlet.FrameworkServlet  ] : Initializing Servlet 'dispatcherServlet'
+2021-05-19 13:23:42 INFO  [org.springframework.web.servlet.FrameworkServlet  ] : Completed initialization in 1 ms
+2021-05-19 13:23:42 INFO  [com.zaxxer.hikari.HikariDataSource                ] : HikariPool-1 - Starting...
+2021-05-19 13:23:42 INFO  [com.zaxxer.hikari.HikariDataSource                ] : HikariPool-1 - Start completed.
+2021-05-19 13:23:42 INFO  [com.bin.service.impl.DeviceServiceImpl            ] : 设备串号: 00000000000001,新增时间: 2021-05-19 13:23:42
+2021-05-19 13:42:03 INFO  [scheduling.concurrent.ExecutorConfigurationSupport] : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-05-19 13:42:03 INFO  [com.zaxxer.hikari.HikariDataSource                ] : HikariPool-1 - Shutdown initiated...
+2021-05-19 13:42:03 INFO  [com.zaxxer.hikari.HikariDataSource                ] : HikariPool-1 - Shutdown completed.
+2021-05-19 13:42:08 INFO  [org.springframework.boot.StartupInfoLogger        ] : Starting PmApplication using Java 1.8.0_91 on DESKTOP-R71C5UD with PID 23664 (D:\work\pm\target\classes started by fitz in D:\work\pm)
+2021-05-19 13:42:08 INFO  [org.springframework.boot.SpringApplication        ] : No active profile set, falling back to default profiles: default
+2021-05-19 13:42:08 WARN  [org.mybatis.logging.Logger                        ] : Skipping MapperFactoryBean with name 'deviceDao' and 'com.bin.dao.DeviceDao' mapperInterface. Bean already defined with the same name!
+2021-05-19 13:42:08 WARN  [org.mybatis.logging.Logger                        ] : Skipping MapperFactoryBean with name 'groupDao' and 'com.bin.dao.GroupDao' mapperInterface. Bean already defined with the same name!
+2021-05-19 13:42:08 WARN  [org.mybatis.logging.Logger                        ] : Skipping MapperFactoryBean with name 'groupDeviceDao' and 'com.bin.dao.GroupDeviceDao' mapperInterface. Bean already defined with the same name!
+2021-05-19 13:42:08 WARN  [org.mybatis.logging.Logger                        ] : Skipping MapperFactoryBean with name 'groupScriptDao' and 'com.bin.dao.GroupScriptDao' mapperInterface. Bean already defined with the same name!
+2021-05-19 13:42:08 WARN  [org.mybatis.logging.Logger                        ] : Skipping MapperFactoryBean with name 'groupTaskDao' and 'com.bin.dao.GroupTaskDao' mapperInterface. Bean already defined with the same name!
+2021-05-19 13:42:08 WARN  [org.mybatis.logging.Logger                        ] : Skipping MapperFactoryBean with name 'infoDao' and 'com.bin.dao.InfoDao' mapperInterface. Bean already defined with the same name!
+2021-05-19 13:42:08 WARN  [org.mybatis.logging.Logger                        ] : Skipping MapperFactoryBean with name 'scriptDao' and 'com.bin.dao.ScriptDao' mapperInterface. Bean already defined with the same name!
+2021-05-19 13:42:08 WARN  [org.mybatis.logging.Logger                        ] : Skipping MapperFactoryBean with name 'taskDao' and 'com.bin.dao.TaskDao' mapperInterface. Bean already defined with the same name!
+2021-05-19 13:42:08 WARN  [org.mybatis.logging.Logger                        ] : Skipping MapperFactoryBean with name 'userDao' and 'com.bin.dao.UserDao' mapperInterface. Bean already defined with the same name!
+2021-05-19 13:42:08 WARN  [org.mybatis.logging.Logger                        ] : No MyBatis mapper was found in '[com.bin.dao]' package. Please check your configuration.
+2021-05-19 13:42:08 INFO  [framework.boot.web.embedded.tomcat.TomcatWebServer] : Tomcat initialized with port(s): 8090 (http)
+2021-05-19 13:42:08 INFO  [org.apache.juli.logging.DirectJDKLog              ] : Initializing ProtocolHandler ["http-nio-8090"]
+2021-05-19 13:42:08 INFO  [org.apache.juli.logging.DirectJDKLog              ] : Starting service [Tomcat]
+2021-05-19 13:42:08 INFO  [org.apache.juli.logging.DirectJDKLog              ] : Starting Servlet engine: [Apache Tomcat/9.0.45]
+2021-05-19 13:42:09 INFO  [org.apache.juli.logging.DirectJDKLog              ] : Initializing Spring embedded WebApplicationContext
+2021-05-19 13:42:09 INFO  [servlet.context.ServletWebServerApplicationContext] : Root WebApplicationContext: initialization completed in 948 ms
+2021-05-19 13:42:09 INFO  [scheduling.concurrent.ExecutorConfigurationSupport] : Initializing ExecutorService 'applicationTaskExecutor'
+2021-05-19 13:42:10 INFO  [org.apache.juli.logging.DirectJDKLog              ] : Starting ProtocolHandler ["http-nio-8090"]
+2021-05-19 13:42:10 INFO  [framework.boot.web.embedded.tomcat.TomcatWebServer] : Tomcat started on port(s): 8090 (http) with context path ''
+2021-05-19 13:42:10 INFO  [org.springframework.boot.StartupInfoLogger        ] : Started PmApplication in 2.444 seconds (JVM running for 3.188)
+2021-05-19 13:42:32 INFO  [org.apache.juli.logging.DirectJDKLog              ] : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-05-19 13:42:32 INFO  [org.springframework.web.servlet.FrameworkServlet  ] : Initializing Servlet 'dispatcherServlet'
+2021-05-19 13:42:32 INFO  [org.springframework.web.servlet.FrameworkServlet  ] : Completed initialization in 1 ms
+2021-05-19 13:42:32 INFO  [com.zaxxer.hikari.HikariDataSource                ] : HikariPool-1 - Starting...
+2021-05-19 13:42:33 INFO  [com.zaxxer.hikari.HikariDataSource                ] : HikariPool-1 - Start completed.
+2021-05-19 13:42:33 INFO  [com.bin.service.impl.UserServiceImpl              ] : 用户信息: admin,登录时间: 2021-05-19 13:42:33
+2021-05-19 13:44:30 INFO  [com.bin.service.impl.UserServiceImpl              ] : 用户信息: admin,登录时间: 2021-05-19 13:44:30
+2021-05-19 13:46:35 INFO  [com.bin.service.impl.UserServiceImpl              ] : 用户信息: admin,登录时间: 2021-05-19 13:46:35
+2021-05-19 13:58:40 INFO  [scheduling.concurrent.ExecutorConfigurationSupport] : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-05-19 13:58:40 INFO  [com.zaxxer.hikari.HikariDataSource                ] : HikariPool-1 - Shutdown initiated...
+2021-05-19 13:58:40 INFO  [com.zaxxer.hikari.HikariDataSource                ] : HikariPool-1 - Shutdown completed.
+2021-05-19 14:17:07 INFO  [org.springframework.boot.StartupInfoLogger        ] : Starting PmApplication using Java 1.8.0_91 on DESKTOP-R71C5UD with PID 7816 (D:\work\pm\target\classes started by fitz in D:\work\pm)
+2021-05-19 14:17:07 INFO  [org.springframework.boot.SpringApplication        ] : No active profile set, falling back to default profiles: default
+2021-05-19 14:17:08 WARN  [org.mybatis.logging.Logger                        ] : Skipping MapperFactoryBean with name 'deviceDao' and 'com.bin.dao.DeviceDao' mapperInterface. Bean already defined with the same name!
+2021-05-19 14:17:08 WARN  [org.mybatis.logging.Logger                        ] : Skipping MapperFactoryBean with name 'groupDao' and 'com.bin.dao.GroupDao' mapperInterface. Bean already defined with the same name!
+2021-05-19 14:17:08 WARN  [org.mybatis.logging.Logger                        ] : Skipping MapperFactoryBean with name 'groupDeviceDao' and 'com.bin.dao.GroupDeviceDao' mapperInterface. Bean already defined with the same name!
+2021-05-19 14:17:08 WARN  [org.mybatis.logging.Logger                        ] : Skipping MapperFactoryBean with name 'groupScriptDao' and 'com.bin.dao.GroupScriptDao' mapperInterface. Bean already defined with the same name!
+2021-05-19 14:17:08 WARN  [org.mybatis.logging.Logger                        ] : Skipping MapperFactoryBean with name 'groupTaskDao' and 'com.bin.dao.GroupTaskDao' mapperInterface. Bean already defined with the same name!
+2021-05-19 14:17:08 WARN  [org.mybatis.logging.Logger                        ] : Skipping MapperFactoryBean with name 'infoDao' and 'com.bin.dao.InfoDao' mapperInterface. Bean already defined with the same name!
+2021-05-19 14:17:08 WARN  [org.mybatis.logging.Logger                        ] : Skipping MapperFactoryBean with name 'scriptDao' and 'com.bin.dao.ScriptDao' mapperInterface. Bean already defined with the same name!
+2021-05-19 14:17:08 WARN  [org.mybatis.logging.Logger                        ] : Skipping MapperFactoryBean with name 'taskDao' and 'com.bin.dao.TaskDao' mapperInterface. Bean already defined with the same name!
+2021-05-19 14:17:08 WARN  [org.mybatis.logging.Logger                        ] : Skipping MapperFactoryBean with name 'userDao' and 'com.bin.dao.UserDao' mapperInterface. Bean already defined with the same name!
+2021-05-19 14:17:08 WARN  [org.mybatis.logging.Logger                        ] : No MyBatis mapper was found in '[com.bin.dao]' package. Please check your configuration.
+2021-05-19 14:17:08 INFO  [framework.boot.web.embedded.tomcat.TomcatWebServer] : Tomcat initialized with port(s): 8090 (http)
+2021-05-19 14:17:08 INFO  [org.apache.juli.logging.DirectJDKLog              ] : Initializing ProtocolHandler ["http-nio-8090"]
+2021-05-19 14:17:08 INFO  [org.apache.juli.logging.DirectJDKLog              ] : Starting service [Tomcat]
+2021-05-19 14:17:08 INFO  [org.apache.juli.logging.DirectJDKLog              ] : Starting Servlet engine: [Apache Tomcat/9.0.45]
+2021-05-19 14:17:08 INFO  [org.apache.juli.logging.DirectJDKLog              ] : Initializing Spring embedded WebApplicationContext
+2021-05-19 14:17:08 INFO  [servlet.context.ServletWebServerApplicationContext] : Root WebApplicationContext: initialization completed in 962 ms
+2021-05-19 14:17:09 INFO  [scheduling.concurrent.ExecutorConfigurationSupport] : Initializing ExecutorService 'applicationTaskExecutor'
+2021-05-19 14:17:09 INFO  [org.apache.juli.logging.DirectJDKLog              ] : Starting ProtocolHandler ["http-nio-8090"]
+2021-05-19 14:17:09 INFO  [framework.boot.web.embedded.tomcat.TomcatWebServer] : Tomcat started on port(s): 8090 (http) with context path ''
+2021-05-19 14:17:09 INFO  [org.springframework.boot.StartupInfoLogger        ] : Started PmApplication in 2.487 seconds (JVM running for 3.286)
+2021-05-19 14:17:15 INFO  [scheduling.concurrent.ExecutorConfigurationSupport] : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-05-19 17:24:32 INFO  [org.springframework.boot.StartupInfoLogger        ] : Starting PmApplication using Java 1.8.0_91 on DESKTOP-R71C5UD with PID 12140 (D:\work\pm\target\classes started by fitz in D:\work\pm)
+2021-05-19 17:24:32 INFO  [org.springframework.boot.SpringApplication        ] : No active profile set, falling back to default profiles: default
+2021-05-19 17:24:33 WARN  [org.mybatis.logging.Logger                        ] : Skipping MapperFactoryBean with name 'deviceDao' and 'com.bin.dao.DeviceDao' mapperInterface. Bean already defined with the same name!
+2021-05-19 17:24:33 WARN  [org.mybatis.logging.Logger                        ] : Skipping MapperFactoryBean with name 'groupDao' and 'com.bin.dao.GroupDao' mapperInterface. Bean already defined with the same name!
+2021-05-19 17:24:33 WARN  [org.mybatis.logging.Logger                        ] : Skipping MapperFactoryBean with name 'groupDeviceDao' and 'com.bin.dao.GroupDeviceDao' mapperInterface. Bean already defined with the same name!
+2021-05-19 17:24:33 WARN  [org.mybatis.logging.Logger                        ] : Skipping MapperFactoryBean with name 'groupScriptDao' and 'com.bin.dao.GroupScriptDao' mapperInterface. Bean already defined with the same name!
+2021-05-19 17:24:33 WARN  [org.mybatis.logging.Logger                        ] : Skipping MapperFactoryBean with name 'groupTaskDao' and 'com.bin.dao.GroupTaskDao' mapperInterface. Bean already defined with the same name!
+2021-05-19 17:24:33 WARN  [org.mybatis.logging.Logger                        ] : Skipping MapperFactoryBean with name 'infoDao' and 'com.bin.dao.InfoDao' mapperInterface. Bean already defined with the same name!
+2021-05-19 17:24:33 WARN  [org.mybatis.logging.Logger                        ] : Skipping MapperFactoryBean with name 'scriptDao' and 'com.bin.dao.ScriptDao' mapperInterface. Bean already defined with the same name!
+2021-05-19 17:24:33 WARN  [org.mybatis.logging.Logger                        ] : Skipping MapperFactoryBean with name 'taskDao' and 'com.bin.dao.TaskDao' mapperInterface. Bean already defined with the same name!
+2021-05-19 17:24:33 WARN  [org.mybatis.logging.Logger                        ] : Skipping MapperFactoryBean with name 'userDao' and 'com.bin.dao.UserDao' mapperInterface. Bean already defined with the same name!
+2021-05-19 17:24:33 WARN  [org.mybatis.logging.Logger                        ] : No MyBatis mapper was found in '[com.bin.dao]' package. Please check your configuration.
+2021-05-19 17:24:33 INFO  [framework.boot.web.embedded.tomcat.TomcatWebServer] : Tomcat initialized with port(s): 8090 (http)
+2021-05-19 17:24:33 INFO  [org.apache.juli.logging.DirectJDKLog              ] : Initializing ProtocolHandler ["http-nio-8090"]
+2021-05-19 17:24:33 INFO  [org.apache.juli.logging.DirectJDKLog              ] : Starting service [Tomcat]
+2021-05-19 17:24:33 INFO  [org.apache.juli.logging.DirectJDKLog              ] : Starting Servlet engine: [Apache Tomcat/9.0.45]
+2021-05-19 17:24:33 INFO  [org.apache.juli.logging.DirectJDKLog              ] : Initializing Spring embedded WebApplicationContext
+2021-05-19 17:24:33 INFO  [servlet.context.ServletWebServerApplicationContext] : Root WebApplicationContext: initialization completed in 1265 ms
+2021-05-19 17:24:34 INFO  [scheduling.concurrent.ExecutorConfigurationSupport] : Initializing ExecutorService 'applicationTaskExecutor'
+2021-05-19 17:24:35 INFO  [org.apache.juli.logging.DirectJDKLog              ] : Starting ProtocolHandler ["http-nio-8090"]
+2021-05-19 17:24:35 INFO  [framework.boot.web.embedded.tomcat.TomcatWebServer] : Tomcat started on port(s): 8090 (http) with context path ''
+2021-05-19 17:24:35 INFO  [org.springframework.boot.StartupInfoLogger        ] : Started PmApplication in 2.942 seconds (JVM running for 3.87)
+2021-05-19 17:26:22 INFO  [org.apache.juli.logging.DirectJDKLog              ] : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-05-19 17:26:22 INFO  [org.springframework.web.servlet.FrameworkServlet  ] : Initializing Servlet 'dispatcherServlet'
+2021-05-19 17:26:22 INFO  [org.springframework.web.servlet.FrameworkServlet  ] : Completed initialization in 0 ms
+2021-05-19 17:26:23 INFO  [com.zaxxer.hikari.HikariDataSource                ] : HikariPool-1 - Starting...
+2021-05-19 17:26:23 INFO  [com.zaxxer.hikari.HikariDataSource                ] : HikariPool-1 - Start completed.
+2021-05-19 17:26:23 INFO  [com.bin.service.impl.UserServiceImpl              ] : 用户信息: admin,登录时间: 2021-05-19 17:26:23
+2021-05-19 17:35:23 INFO  [com.bin.service.impl.UserServiceImpl              ] : 用户信息: admin,登录时间: 2021-05-19 17:35:23
+2021-05-19 17:43:33 WARN  [b.servlet.handler.AbstractHandlerExceptionResolver] : Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' not supported]
+2021-05-19 17:47:07 INFO  [com.bin.service.impl.UserServiceImpl              ] : 用户信息: admin,登录时间: 2021-05-19 17:47:07
+2021-05-19 17:54:21 INFO  [scheduling.concurrent.ExecutorConfigurationSupport] : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-05-19 17:54:21 INFO  [com.zaxxer.hikari.HikariDataSource                ] : HikariPool-1 - Shutdown initiated...
+2021-05-19 17:54:21 INFO  [com.zaxxer.hikari.HikariDataSource                ] : HikariPool-1 - Shutdown completed.
