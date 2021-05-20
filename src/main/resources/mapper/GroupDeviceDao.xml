@@ -16,6 +16,7 @@
                 #{id}
             )
         </foreach>
+
     </insert>
 
 </mapper>

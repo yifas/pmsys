@@ -12,7 +12,6 @@ public class GroupTaskServiceImpl implements GroupTaskService {
     private GroupTaskDao groupTaskDao;
 
 
-
     @Override
     public Integer[] getGroupIds(Long id) {
         return groupTaskDao.getGroupIds(id);
