@@ -1,12 +1,13 @@
 package com.bin.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.bin.dto.QueryCondition;
 import com.bin.pojo.Device;
-import com.bin.pojo.Group;
+import com.bin.pojo.Dict;
 
 import java.util.List;
 
-public interface GroupDao extends BaseMapper<Group> {
+public interface DictDao extends BaseMapper<Dict> {
 
-    Integer listDevice(Integer id);
+
 }

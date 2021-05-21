@@ -4,12 +4,11 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.bin.common.Result;
 import com.bin.dao.DeviceDao;
+import com.bin.dao.DictDao;
 import com.bin.dao.InfoDao;
 import com.bin.dao.ScriptDao;
-import com.bin.pojo.Device;
-import com.bin.pojo.Info;
-import com.bin.pojo.Script;
-import com.bin.pojo.Task;
+import com.bin.dto.QueryCondition;
+import com.bin.pojo.*;
 import com.bin.service.DeviceService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +32,9 @@ public class DeviceServiceImpl implements DeviceService {
     @Autowired
     private ScriptDao scriptDao;
 
+    @Autowired
+    private DictDao dictDao;
+
     @Override
     public Result addDevice(Device device) {
         //判断串号是否已经存在
@@ -47,8 +49,17 @@ public class DeviceServiceImpl implements DeviceService {
             device.setLastOnlineTime(0);
             //第一次创建的时候统一设置为0  【如果长时间没有第二次访问设置为1 就不合理】
             device.setOnline(0);
-            log.info("设备串号: {},新增时间: {}",device.getSerial(),new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
-            return new Result(200,"新增设备成功",deviceDao.insert(device));
+            //通过ICCID查询手机号 并设置
+            if (device.getIccid() != null) {
+                QueryWrapper<Dict> queryWrapper = new QueryWrapper<>();
+                queryWrapper.eq("iccid", device.getIccid());
+                Dict dict = dictDao.selectOne(queryWrapper);
+                if (dict != null) {
+                    device.setPhone(dict.getPhone());
+                }
+            }
+            log.info("设备串号: {},新增时间: {}", device.getSerial(), new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
+            return new Result(200, "新增设备成功", deviceDao.insert(device));
         }
         //获取数据库中updateTime 【是否必要】
         /*if (one.getUpdateTime() == null) {
@@ -69,6 +80,19 @@ public class DeviceServiceImpl implements DeviceService {
             //设置在线
             device.setOnline(1);
             device.setUpdateTime(new Date());
+
+            if(device.getPhone()==null){
+                //通过ICCID查询手机号 并设置
+                if (device.getIccid() != null) {
+                    QueryWrapper<Dict> queryWrapper = new QueryWrapper<>();
+                    queryWrapper.eq("iccid", device.getIccid());
+                    Dict dict = dictDao.selectOne(queryWrapper);
+                    if (dict != null) {
+                        device.setPhone(dict.getPhone());
+                    }
+                }
+            }
+
             deviceDao.update(device, updateWrapper);
             //当前时间 设备串号
             /*
@@ -83,30 +107,30 @@ public class DeviceServiceImpl implements DeviceService {
             Task task = deviceDao.selectTaskBySerial(device.getSerial());
             HashMap map = new HashMap();
             //先查到其对应的task
-            if (task!=null){
+            if (task != null) {
                 //脚本名称
                 //task.getScriptName();
                 //查询脚本信息
                 QueryWrapper<Script> queryWrapper = new QueryWrapper<>();
-                queryWrapper.eq("name",task.getScriptName());
+                queryWrapper.eq("name", task.getScriptName());
                 Script script = scriptDao.selectOne(queryWrapper);
-                if (script.getName()!=null&&!"".equals(script.getName())){
-                    map.put("scriptName",script.getName());
+                if (script.getName() != null && !"".equals(script.getName())) {
+                    map.put("scriptName", script.getName());
                 }
-                if (script.getAppName()!=null&&!"".equals(script.getAppName())){
-                    map.put("appName",script.getAppName());
+                if (script.getAppName() != null && !"".equals(script.getAppName())) {
+                    map.put("appName", script.getAppName());
                 }
-                if (script.getAddress()!=null&&!"".equals(script.getAddress())){
-                    map.put("address",script.getAddress());
+                if (script.getAddress() != null && !"".equals(script.getAddress())) {
+                    map.put("address", script.getAddress());
                 }
                 //计划任务ID
-                if (task.getId()!=null){
-                    map.put("taskId",task.getId());
+                if (task.getId() != null) {
+                    map.put("taskId", task.getId());
                 }
 
             }
 
-            return new Result(200,"更新设备&查询当前任务成功",map);
+            return new Result(200, "更新设备&查询当前任务成功", map);
         }
         // >60s的情况
         //判断当前设备是否有最近的下线记录 (IMEI status=0 where createTime最近)
@@ -125,7 +149,7 @@ public class DeviceServiceImpl implements DeviceService {
         //设置在线
         device.setOnline(1);
         device.setUpdateTime(new Date());
-        return new Result(200,"更新成功",deviceDao.update(device, updateWrapper));
+        return new Result(200, "更新成功", deviceDao.update(device, updateWrapper));
 
     }
 
@@ -149,5 +173,10 @@ public class DeviceServiceImpl implements DeviceService {
     public List<Device> selectIds() {
         return deviceDao.selectIds();
 
+    }
+
+    @Override
+    public List<Device> getDeviceByCond(QueryCondition condition) {
+        return deviceDao.getDeviceByCond(condition);
     }
 }

@@ -45,4 +45,30 @@
         where d.serial=#{serial}
         having t.createTime <![CDATA[<]]> now() AND NOW() <![CDATA[<]]> t.endTime
     </select>
+    <select id="getDeviceByCond" resultType="com.bin.pojo.Device" parameterType="com.bin.dto.QueryCondition">
+        select * from device d
+        LEFT JOIN group_device gd
+        on d.id=gd.deviceId
+        <where>
+            <if test="iccid != null and iccid != ''">
+                and d.iccid=#{iccid}
+            </if>
+            <if test="phone != null and phone != ''">
+                and d.phone=#{phone}
+            </if>
+            <if test="serial != null and serial != ''">
+                and d.serial=#{serial}
+            </if>
+            <if test="remark != null and remark != ''">
+                and d.remark=#{remark}
+            </if>
+            <if test="online != null">
+                and d.online=#{online}
+            </if>
+            <if test="group != null">
+                and gd.groupId=#{group}
+            </if>
+
+        </where>
+    </select>
 </mapper>

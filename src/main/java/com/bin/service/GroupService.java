@@ -1,5 +1,6 @@
 package com.bin.service;
 
+
 import java.util.HashMap;
 
 public interface GroupService {
@@ -9,4 +10,11 @@ public interface GroupService {
      * @param map
      */
     void setGroup(HashMap map);
+
+    /**
+     * 根据分组查询设备
+     * @param id
+     * @return
+     */
+    Integer listDevice(Integer id);
 }

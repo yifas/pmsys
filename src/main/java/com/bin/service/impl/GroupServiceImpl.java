@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.bin.dao.DeviceDao;
 import com.bin.dao.GroupDao;
 import com.bin.dao.GroupDeviceDao;
+import com.bin.pojo.Device;
 import com.bin.pojo.Group;
 import com.bin.pojo.GroupDevice;
 import com.bin.service.GroupService;
@@ -69,5 +70,10 @@ public class GroupServiceImpl implements GroupService {
             groupDao.updateById(group);
         }
 
+    }
+
+    @Override
+    public Integer listDevice(Integer id) {
+        return groupDao.listDevice(id);
     }
 }

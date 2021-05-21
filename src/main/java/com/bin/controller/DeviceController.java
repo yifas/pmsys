@@ -1,17 +1,22 @@
 package com.bin.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.bin.common.Result;
 import com.bin.dao.DeviceDao;
+import com.bin.dao.GroupDao;
 import com.bin.dto.PageQueryBean;
 import com.bin.dto.QueryCondition;
+import com.bin.dto.StatisticsVo;
 import com.bin.pojo.Device;
+import com.bin.pojo.Group;
 import com.bin.service.DeviceService;
 import com.bin.service.InfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -33,6 +38,9 @@ public class DeviceController {
 
     @Autowired
     private InfoService infoService;
+
+    @Autowired
+    private GroupDao groupDao;
 
     /**
      * 获取请求数据
@@ -81,8 +89,8 @@ public class DeviceController {
         //多条件查询
         Map<String, Object> map = new HashMap<>();
 
-        //todo 待优化
-        if (!"".equals(condition.getIccid())) {
+        List<Device> devices = deviceService.getDeviceByCond(condition);
+      /*  if (!"".equals(condition.getIccid())) {
             map.put("iccid", condition.getIccid());
         }
         if (!"".equals(condition.getPhone())) {
@@ -97,7 +105,10 @@ public class DeviceController {
 
             map.put("remark", condition.getRemark());
         }
-        List<Device> devices = deviceDao.selectByMap(map);
+        if(condition.getOnline()!=null){
+            map.put("online",condition.getOnline());
+        }
+        List<Device> devices = deviceDao.selectByMap(map);*/
 
       /*  Device device = new Device();
         BeanUtils.copyProperties(condition,device);*/
@@ -117,5 +128,52 @@ public class DeviceController {
 
         return new Result(200,"查询成功",devices);
     }
+
+    /**
+     * 构建Select选择器中group
+     * @return
+     */
+    @GetMapping("/getGroups")
+    public Result getGroups() {
+        //查询所有script
+        List<Group> groupList = groupDao.selectList(null);
+        List list = new ArrayList();
+        //取出Id 和 name
+        for (Group group : groupList) {
+            Map<String, Object> map = new HashMap<>();
+            map.put("value", group.getId());
+            map.put("label", group.getName());
+            list.add(map);
+        }
+
+        return new Result(200, "查询成功", list);
+    }
+
+    /**
+     * 构建统计数据
+     * @return
+     */
+    @GetMapping("/getStatistics")
+    public Result getStatistics() {
+        StatisticsVo statisticsVo = new StatisticsVo();
+
+
+        Integer total = deviceDao.selectCount(null);
+
+        QueryWrapper<Device> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("online",1);
+        Integer online = deviceDao.selectCount(queryWrapper);
+
+        QueryWrapper<Device> query = new QueryWrapper<>();
+        query.eq("online",0);
+        Integer disOnline = deviceDao.selectCount(query);
+
+        statisticsVo.setTotal(total);
+        statisticsVo.setOnline(online);
+        statisticsVo.setDisOnline(disOnline);
+
+        return new Result(200, "查询成功", statisticsVo);
+    }
+
 
 }

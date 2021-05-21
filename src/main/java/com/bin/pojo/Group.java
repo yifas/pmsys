@@ -36,9 +36,9 @@ public class Group implements Serializable {
     private String remark;
 
     /**
-     * 记录时间
+     * 在线设备
      */
-    private String time;
+    private Integer online;
 
     /**
      * 创建时间

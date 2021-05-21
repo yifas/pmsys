@@ -30,9 +30,13 @@ public class InfoServiceImpl implements InfoService {
             //已经是离线 不操作
             Integer status = infoDao.selectStatusBySerial(device.getSerial());
             //已经有离线记录
-            if (status!=null && status==0){
-               continue;
+        /*    if (status == 0) {
+                continue;
+            }*/
+            if (status != null && status == 0) {
+                continue;
             }
+
             //status==1
             Info info = new Info();
             info.setSerial(device.getSerial());

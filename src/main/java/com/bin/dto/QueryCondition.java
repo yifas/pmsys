@@ -14,4 +14,6 @@ public class QueryCondition implements Serializable {
     private String phone;
     private String serial;
     private String remark;
+    private Integer online;
+    private Integer group;
 }

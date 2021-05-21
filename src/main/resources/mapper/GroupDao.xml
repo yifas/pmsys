@@ -9,4 +9,15 @@
           </select>-->
 
 
+    <select id="listDevice" resultType="java.lang.Integer">
+        SELECT
+        sum(online)
+        from
+        device d
+        LEFT JOIN group_device gd
+        on d.id=gd.deviceId
+        where
+        gd.groupId=#{id}
+    </select>
+
 </mapper>

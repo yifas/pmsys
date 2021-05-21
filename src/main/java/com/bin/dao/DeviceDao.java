@@ -1,6 +1,7 @@
 package com.bin.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.bin.dto.QueryCondition;
 import com.bin.pojo.Device;
 import com.bin.pojo.Task;
 import org.apache.ibatis.annotations.Param;
@@ -16,4 +17,6 @@ public interface DeviceDao extends BaseMapper<Device> {
     List<Device> selectIds();
 
     Task selectTaskBySerial(String serial);
+
+    List<Device> getDeviceByCond(QueryCondition condition);
 }

@@ -1,6 +1,7 @@
 package com.bin.service;
 
 import com.bin.common.Result;
+import com.bin.dto.QueryCondition;
 import com.bin.pojo.Device;
 
 import java.util.List;
@@ -32,4 +33,10 @@ public interface DeviceService {
      */
     List<Device> selectIds();
 
+    /**
+     * 多条件查询
+     * @param condition
+     * @return
+     */
+    List<Device> getDeviceByCond(QueryCondition condition);
 }

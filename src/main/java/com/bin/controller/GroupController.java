@@ -1,6 +1,7 @@
 package com.bin.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.bin.common.Result;
@@ -32,6 +33,21 @@ public class GroupController {
 
     @PostMapping("/getGroup")
     public Result getGroup(@RequestBody PageQueryBean param) {
+        /*
+            遍历组  遍历设备 统计数值  插入数据库
+            消耗性能
+         */
+        //1.获取所有组
+        List<Group> groups = groupDao.selectList(null);
+        for (Group group : groups) {
+            //1.1获取每个分组下在线的设备
+            Integer num = groupService.listDevice(group.getId());
+            group.setOnline(num);
+            //UpdateWrapper<Group> wrapper = new UpdateWrapper<>();
+            groupDao.updateById(group);
+        }
+
+
         Page<Group> page = new Page<>(param.getCurrentPage(), param.getPageSize());
 
         IPage<Group> list = groupDao.selectPage(page,null);
