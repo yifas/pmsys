@@ -176,4 +176,10 @@ public class DeviceController {
     }
 
 
+    @GetMapping("/getNoGroup")
+    public Result getNoGroup() {
+        //查询所有未分组设备
+        List<Device> list = deviceService.getNoGroup();
+        return new Result(200, "查询成功", list);
+    }
 }

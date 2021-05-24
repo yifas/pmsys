@@ -71,4 +71,16 @@
 
         </where>
     </select>
+    <select id="getNoGroup" resultType="com.bin.pojo.Device">
+        select
+            *
+            from
+            device
+            WHERE id not in
+            (
+            select
+            DISTINCT deviceId
+            from group_device
+            )
+    </select>
 </mapper>

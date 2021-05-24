@@ -19,4 +19,7 @@ public interface DeviceDao extends BaseMapper<Device> {
     Task selectTaskBySerial(String serial);
 
     List<Device> getDeviceByCond(QueryCondition condition);
+
+    List<Device> getNoGroup();
+
 }

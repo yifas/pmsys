@@ -39,4 +39,11 @@ public interface DeviceService {
      * @return
      */
     List<Device> getDeviceByCond(QueryCondition condition);
+
+    /**
+     * 查询所有未分组设备
+     * @return
+     */
+    List<Device> getNoGroup();
+
 }

@@ -179,4 +179,9 @@ public class DeviceServiceImpl implements DeviceService {
     public List<Device> getDeviceByCond(QueryCondition condition) {
         return deviceDao.getDeviceByCond(condition);
     }
+
+    @Override
+    public List<Device> getNoGroup() {
+        return deviceDao.getNoGroup();
+    }
 }
