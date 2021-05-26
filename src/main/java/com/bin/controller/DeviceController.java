@@ -1,5 +1,7 @@
 package com.bin.controller;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -88,31 +90,21 @@ public class DeviceController {
     public Result getDeviceByCond(@RequestBody QueryCondition condition) {
         //多条件查询
         Map<String, Object> map = new HashMap<>();
-
         List<Device> devices = deviceService.getDeviceByCond(condition);
-      /*  if (!"".equals(condition.getIccid())) {
-            map.put("iccid", condition.getIccid());
+        List list = new ArrayList();
+        for (Device device : devices) {
+            String s = JSONObject.toJSONString(device);
+            JSONObject jsonObject = JSONObject.parseObject(s);
+            list.add(jsonObject);
         }
-        if (!"".equals(condition.getPhone())) {
-
-            map.put("phone", condition.getPhone());
-        }
-        if (!"".equals(condition.getSerial())) {
-
-            map.put("serial", condition.getSerial());
-        }
-        if (!"".equals(condition.getRemark())) {
-
-            map.put("remark", condition.getRemark());
-        }
-        if(condition.getOnline()!=null){
-            map.put("online",condition.getOnline());
-        }
-        List<Device> devices = deviceDao.selectByMap(map);*/
-
-      /*  Device device = new Device();
-        BeanUtils.copyProperties(condition,device);*/
-        return new Result(200, "请求成功", devices);
+        map.put("records",list);
+        map.put("page",condition.getPage());
+        map.put("size",condition.getSize());
+        //查询一次不分页
+        condition.setPage(null);
+        condition.setSize(null);
+        map.put("total",deviceService.getDeviceByCond(condition).size());
+        return new Result(200, "请求成功", map);
     }
 
     @DeleteMapping("/deleteDeviceById/{id}")

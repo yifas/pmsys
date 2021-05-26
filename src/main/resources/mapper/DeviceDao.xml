@@ -46,8 +46,8 @@
         having t.createTime <![CDATA[<]]> now() AND NOW() <![CDATA[<]]> t.endTime
     </select>
     <select id="getDeviceByCond" resultType="com.bin.pojo.Device" parameterType="com.bin.dto.QueryCondition">
-        select * from device d
-        LEFT JOIN group_device gd
+        select distinct d.* from device d
+        left JOIN group_device gd
         on d.id=gd.deviceId
         <where>
             <if test="iccid != null and iccid != ''">
@@ -68,7 +68,9 @@
             <if test="group != null">
                 and gd.groupId=#{group}
             </if>
-
+            <if test="page !=null and size!=null">
+                limit #{page},#{size}
+            </if>
         </where>
     </select>
     <select id="getNoGroup" resultType="com.bin.pojo.Device">

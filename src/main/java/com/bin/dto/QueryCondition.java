@@ -16,4 +16,7 @@ public class QueryCondition implements Serializable {
     private String remark;
     private Integer online;
     private Integer group;
+    //分页
+    private Integer page;
+    private Integer size;
 }

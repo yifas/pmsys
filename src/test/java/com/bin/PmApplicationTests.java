@@ -1,20 +1,25 @@
 package com.bin;
 
+import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.bin.dao.DeviceDao;
 import com.bin.dao.GroupDao;
 import com.bin.dao.InfoDao;
+import com.bin.dto.QueryCondition;
 import com.bin.dto.TimeQuantumDto;
 import com.bin.pojo.Device;
 import com.bin.pojo.Group;
 import com.bin.pojo.Info;
 import com.bin.pojo.Task;
+import com.bin.service.DeviceService;
 import com.bin.service.TaskService;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -32,6 +37,9 @@ class PmApplicationTests {
 
     @Autowired
     private TaskService taskService;
+
+    @Autowired
+    private DeviceService deviceService;
 
     @Test
     void contextLoads() {
@@ -111,4 +119,28 @@ class PmApplicationTests {
         System.out.println(date);
         System.out.println(date.getTime()+600000);
     }
+
+    @Test
+    void testSelectPage(){
+        QueryCondition queryCondition = new QueryCondition();
+        queryCondition.setOnline(0);
+        queryCondition.setPage(1);
+        queryCondition.setSize(2);
+
+        List<Device> devices = deviceService.getDeviceByCond(queryCondition);
+        List list = new ArrayList();
+
+
+        for (Device device : devices) {
+            String s = JSON.toJSONString(device);
+            list.add(s);
+        }
+        System.out.println(list);
+    }
+
+
+
 }
+
+
+

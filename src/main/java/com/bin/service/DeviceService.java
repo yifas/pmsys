@@ -3,6 +3,7 @@ package com.bin.service;
 import com.bin.common.Result;
 import com.bin.dto.QueryCondition;
 import com.bin.pojo.Device;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
