@@ -8,16 +8,19 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.bin.common.Result;
 import com.bin.dao.DeviceDao;
 import com.bin.dao.GroupDao;
+import com.bin.dao.GroupDeviceDao;
 import com.bin.dto.PageQueryBean;
 import com.bin.dto.QueryCondition;
 import com.bin.dto.StatisticsVo;
 import com.bin.pojo.Device;
 import com.bin.pojo.Group;
+import com.bin.pojo.GroupDevice;
 import com.bin.service.DeviceService;
 import com.bin.service.InfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -43,6 +46,9 @@ public class DeviceController {
 
     @Autowired
     private GroupDao groupDao;
+
+    @Resource
+    private GroupDeviceDao groupDeviceDao;
 
     /**
      * 获取请求数据
@@ -93,6 +99,7 @@ public class DeviceController {
         List<Device> devices = deviceService.getDeviceByCond(condition);
         List list = new ArrayList();
         for (Device device : devices) {
+            //防止数据带上转移字符 \
             String s = JSONObject.toJSONString(device);
             JSONObject jsonObject = JSONObject.parseObject(s);
             list.add(jsonObject);
@@ -109,8 +116,15 @@ public class DeviceController {
 
     @DeleteMapping("/deleteDeviceById/{id}")
     public Result deleteDeviceById(@PathVariable Long id) {
+        int i = deviceDao.deleteById(id);
+        //删除关系表
+        if (i>0){
+            QueryWrapper<GroupDevice> queryWrapper = new QueryWrapper<>();
+            queryWrapper.eq("deviceId",id);
+            groupDeviceDao.delete(queryWrapper);
+        }
 
-        return new Result(200, "删除成功", deviceDao.deleteById(id));
+        return new Result(200, "删除成功");
     }
 
     @GetMapping("/getDeviceByGroupId/{id}")

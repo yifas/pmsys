@@ -40,6 +40,28 @@
 
 
     </select>
+    <select id="getInfoByCond" resultType="com.bin.pojo.Info" parameterType="com.bin.dto.QueryInfoCondition">
+        select
+        *
+        from info
+        <where>
+            <if test="serial != null and serial != ''">
+                AND serial = #{serial}
+            </if>
+            <if test="status != null">
+                AND status = #{status}
+            </if>
+            <if test="createTime != null and createTime != ''">
+                AND createTime like concat(#{createTime},"%")
+            </if>
+            <if test="remark != null and remark != ''">
+                AND remark = #{remark}
+            </if>
+            <if test="page !=null and size!=null">
+                limit #{page},#{size}
+            </if>
+        </where>
+    </select>
 
 
 </mapper>

@@ -1,13 +1,13 @@
 package com.bin.service.impl;
 
 import com.bin.dao.InfoDao;
+import com.bin.dto.QueryInfoCondition;
 import com.bin.pojo.Device;
 import com.bin.pojo.Info;
 import com.bin.service.InfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -54,5 +54,10 @@ public class InfoServiceImpl implements InfoService {
     public List<Info> selectByMapCond(Map<String, Object> map) {
 
         return infoDao.selectByMapCond(map);
+    }
+
+    @Override
+    public List<Info> getInfoByCond(QueryInfoCondition condition) {
+        return infoDao.getInfoByCond(condition);
     }
 }

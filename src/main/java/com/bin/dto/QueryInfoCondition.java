@@ -10,8 +10,12 @@ import java.io.Serializable;
 @Data
 public class QueryInfoCondition implements Serializable {
 
-    private String id;
-    private String value;
+    private String serial;
+    private Integer status;
     private String remark;
-    private String showDate;
+    private String createTime;
+    //分页
+    private Integer page;
+    private Integer size;
+
 }

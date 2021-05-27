@@ -37,7 +37,7 @@ public class GlobalCorsConfig implements WebMvcConfigurer {
         registry.addInterceptor(loginInterceptor())
                 .addPathPatterns("/**")
                 //放行路径，可以添加多个
-                .excludePathPatterns("/device/user/login","/device/addDevice","/script/getScript");
+                .excludePathPatterns("/device/user/login","/device/addDevice","/device/progress/addProgress","/device/log/uploadLog");
 
     }
 

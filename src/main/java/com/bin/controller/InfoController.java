@@ -1,5 +1,6 @@
 package com.bin.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.bin.common.Result;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -44,8 +46,24 @@ public class InfoController {
         //多条件查询
         Map<String, Object> map = new HashMap<>();
 
+        List<Info> infos = infoService.getInfoByCond(condition);
+        List list = new ArrayList();
+        for (Info info : infos) {
+            String s = JSONObject.toJSONString(info);
+            JSONObject jsonObject = JSONObject.parseObject(s);
+            list.add(jsonObject);
+        }
+
+        map.put("records",list);
+        map.put("page",condition.getPage());
+        map.put("size",condition.getSize());
+
+        //查询一次不分页
+        condition.setPage(null);
+        condition.setSize(null);
+        map.put("total",infoService.getInfoByCond(condition).size());
         //todo 待优化
-        if (!"".equals(condition.getId())) {
+      /*  if (!"".equals(condition.getId())) {
             map.put("serial", condition.getId());
         }
         if (!"".equals(condition.getValue())) {
@@ -59,13 +77,13 @@ public class InfoController {
         if (!"".equals(condition.getRemark())) {
 
             map.put("remark", condition.getRemark());
-        }
+        }*/
         //List<Info> groups = infoDao.selectByMap(map);
 
-        List<Info> groups = infoService.selectByMapCond(map);
+        //List<Info> groups = infoService.selectByMapCond(map);
 
       /*  Device device = new Device();
         BeanUtils.copyProperties(condition,device);*/
-        return new Result(200, "查询成功", groups);
+        return new Result(200, "查询成功", map);
     }
 }

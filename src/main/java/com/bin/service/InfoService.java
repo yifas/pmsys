@@ -1,5 +1,6 @@
 package com.bin.service;
 
+import com.bin.dto.QueryInfoCondition;
 import com.bin.pojo.Device;
 import com.bin.pojo.Info;
 
@@ -19,4 +20,11 @@ public interface InfoService {
      * @return
      */
     List<Info> selectByMapCond(Map<String, Object> map);
+
+    /**
+     * 多条件分页查询
+     * @param condition
+     * @return
+     */
+    List<Info> getInfoByCond(QueryInfoCondition condition);
 }

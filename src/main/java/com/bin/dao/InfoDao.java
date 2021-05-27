@@ -1,6 +1,7 @@
 package com.bin.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.bin.dto.QueryInfoCondition;
 import com.bin.pojo.Info;
 import org.apache.ibatis.annotations.Param;
 
@@ -28,4 +29,11 @@ public interface InfoDao extends BaseMapper<Info> {
      * @return
      */
     List<Info> selectByMapCond(Map<String, Object> map);
+
+    /**
+     * 多条件分组查询
+     * @param condition
+     * @return
+     */
+    List<Info> getInfoByCond(QueryInfoCondition condition);
 }
